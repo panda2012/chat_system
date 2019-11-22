@@ -1,5 +1,5 @@
 (function(exports) {
-	// 事件类型
+	// Event type
 	exports.EVENT_TYPE = {
 		'LOGIN': 'LOGIN',
 		'LOGOUT': 'LOGOUT',
@@ -10,14 +10,14 @@
 	};
 
 	
-	// 服务端口
+	// server port
 	exports.HOST = "127.0.0.1";
 
 	var analyzeMessageData = exports.analyzeMessageData = function(message) {
 			try {
 				return JSON.parse(message);
 			} catch(error) {
-				// 收到了非正常格式的数据
+				//receive invalid formation data
 				console.log('method:analyzeMsgData,error:' + error);
 			}
 

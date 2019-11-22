@@ -6,6 +6,5 @@
         "lang": "latest",
         "sys": "0.0.1",
         "ws": "latest"
-		"fs": "latest"
     }
 }

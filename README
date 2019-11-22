@@ -12,5 +12,8 @@
  2) 屏蔽一些关键字用*代替
  3) 输入/popular 显示最近5秒出现最多的词
  4）输入/stats [username] 显示出在线时间
-5、第三方库
+5、启动步骤
+ 1）cd Server
+ 2) node Server.js
+6、第三方库
  socket库：ws,文件操作库：fs。	

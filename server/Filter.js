@@ -1,58 +1,40 @@
 
-const fs = require("fs")
+var fs = require("fs")
 var vFilter = []
-function FindSubString(str, strSub){
-    var iPos = 0;
-   /*'''
-    var iSize = (int)str.size() - (int)strSub.size();
-    while (iPos <= iSize)
-    {
-	if (strnicmp(str.c_str()+ iPos, strSub.c_str(), strSub.size()) == 0)
-	    return iPos;
-	iPos ++;
-    }
-    '''*/
-
-    return -1;
-}
-
-
-
-
-//载入非法字符文件
-
-function LoadFilter(){
-    fs.readFile( "./list.txt", "utf-8", function( err, data ){
-	
-	if( err ){
-	    console.log( "文件读取错误" );
-	}else {
-	    vFilter.push(data);
-	    console.log(vFilter);
-	    console.log(typeof(data));
+function Filter(){
+    this.FindSubString =function(str, strSub){
+	var iPos = 0;
+	var iSize = str.length - strSub.length;
+	while (iPos <= iSize)
+	{
+	    if (strnicmp(str + iPos, strSub, strSub.length) == 0)
+		return iPos;
+	    iPos ++;
 	}
-    });
+	return -1;
+    }
+
+
+
+
+    //Load Illegal word file
+    this.LoadFilter =function(){
+	fs.readFile( "./list.txt", "utf-8", function( err, data ){
+	
+	    if( err ){
+		console.log( "文件读取错误" );
+	    }else {
+		vFilter = data.split("\n");
+	   console.log(vFilter);
+	    //--console.log(data);
+		return vFilter;
+	    }
+	});
     
-
-    console.log(vFilter);
-    /*vFilter.forEach(function(name){
-	console.log(name);
-    });
     
-    var  arr = []
-    for(i = 1 ; i<= 20; i++){
-	arr.push(i);
-    };
-    console.log(arr);
-
-    for(i = 0 ; i<= arr.length ; i++){
-
-	console.log(i);
-    };
-    */　　
-
-    return true;
-}
+	//console.log(vFilter);
+	return true;
+    }
 
 /*'''
 
@@ -77,9 +59,9 @@ function Check(str, bReplace){
 }
 
 
+*/
 
-
-function Check(str, bReplace, bCaseSensitive){
+/*function Check(str, bReplace, bCaseSensitive){
     list<string>::iteratoriterBeg = vFilter.begin();
     list<string>::iteratoriterEnd = vFilter.end();
 
@@ -108,5 +90,7 @@ function Check(str, bReplace, bCaseSensitive){
 
     return bPass;
 }
-'''*/
-LoadFilter();
+*/
+}
+
+module.exports = Filter
